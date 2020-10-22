@@ -1,0 +1,7 @@
+.content {
+  grid-area: mainContent;
+  background-color: rgb(139, 139, 228);
+}
+.item {
+  color: yellowgreen;
+}
