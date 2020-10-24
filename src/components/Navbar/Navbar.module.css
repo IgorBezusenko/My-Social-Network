@@ -2,6 +2,9 @@
   grid-area: nav;
   background-color: #13ce66;
   padding: 20px;
+  color: #fff;
+  font-size: 18px;
+  line-height: 23px;
 }
 
 .item a {
@@ -11,4 +14,15 @@
 
 .item a.activeLink {
   color: gold;
+}
+
+.itemFriends {
+  margin-top: 30px;
+}
+.friends {
+  margin-top: 17px;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+  align-items: center;
 }

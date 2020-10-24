@@ -23,5 +23,12 @@ const state = {
       { id: 5, message: "Мээээн!" },
     ],
   },
+  sidebar: {
+    friends: [
+      { id: 3, name: "Антонио" },
+      { id: 4, name: "Жулик" },
+      { id: 5, name: "Виктор" },
+    ],
+  },
 };
 export default state;
