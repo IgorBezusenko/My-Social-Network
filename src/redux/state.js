@@ -1,3 +1,5 @@
+import { rerender } from "../rerender";
+
 const state = {
   profilePage: {
     posts: [
@@ -6,6 +8,7 @@ const state = {
       { id: 3, message: "Hi, man", likesCount: 45 },
       { id: 4, message: "The post.", likesCount: 21 },
     ],
+    newPostText: "New text",
   },
   dialogsPage: {
     dialogs: [
@@ -31,4 +34,21 @@ const state = {
     ],
   },
 };
+
+export const addPost = () => {
+  const newpost = {
+    id: 5,
+    message: state.profilePage.newPostText,
+    likesCount: 0,
+  };
+  state.profilePage.posts.push(newpost);
+  state.profilePage.newPostText = "";
+  rerender(state);
+};
+
+export const updateNewPostText = (newText) => {
+  state.profilePage.newPostText = newText;
+  rerender(state);
+};
+
 export default state;

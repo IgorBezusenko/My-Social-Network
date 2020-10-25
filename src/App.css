@@ -1,5 +1,6 @@
 .app-wrapper {
   width: 1200px;
+  height: 95vh;
   margin: 0 auto;
   display: grid;
   grid-template-areas: "header header" "nav mainContent";
