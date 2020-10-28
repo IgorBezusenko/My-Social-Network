@@ -3,18 +3,18 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 
-import state, { addPost, subscribe, updateNewPostText } from "./redux/state";
+import store from "./redux/state";
 
 let rerender = (state) => {
   ReactDOM.render(
     <App
-      state={state}
-      addPost={addPost}
-      updateNewPostText={updateNewPostText}
+      state={store.getState()}
+      addPost={store.addPost.bind(store)}
+      updateNewPostText={store.updateNewPostText.bind(store)}
     />,
     document.getElementById("root")
   );
 };
-rerender(state);
+rerender(store.getState());
 
-subscribe(rerender);
+store.subscribe(rerender);
