@@ -1,6 +1,8 @@
-import { rerender } from "../rerender";
+let rerender = () => {
+  console.log("state update");
+};
 
-const state = {
+let state = {
   profilePage: {
     posts: [
       { id: 1, message: "Hi, how are you?", likesCount: 52 },
@@ -34,6 +36,7 @@ const state = {
     ],
   },
 };
+window.state = state;
 
 export const addPost = () => {
   const newpost = {
@@ -43,12 +46,16 @@ export const addPost = () => {
   };
   state.profilePage.posts.push(newpost);
   state.profilePage.newPostText = "";
-  rerender(state);
+  rerender();
 };
 
 export const updateNewPostText = (newText) => {
   state.profilePage.newPostText = newText;
-  rerender(state);
+  rerender();
+};
+
+export const subscribe = (observer) => {
+  rerender = observer;
 };
 
 export default state;
