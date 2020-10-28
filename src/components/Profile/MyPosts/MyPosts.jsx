@@ -15,12 +15,20 @@ const MyPosts = (props) => {
   let newPostTextarea = React.createRef();
 
   const onAddPost = () => {
-    props.addPost();
+    // props.addPost();
+    props.dispatch({
+      type: "ADD_POST",
+    });
   };
 
   const onPostChange = () => {
     let text = newPostTextarea.current.value;
-    props.updateNewPostText(text);
+    // props.updateNewPostText(text);
+    let action = {
+      type: "UPDATE_NEW_POST_TEXT",
+      newText: text,
+    };
+    props.dispatch(action);
   };
 
   return (
