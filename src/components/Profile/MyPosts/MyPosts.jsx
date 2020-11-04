@@ -18,13 +18,12 @@ const MyPosts = (props) => {
   let newPostTextarea = React.createRef();
 
   const onAddPost = () => {
-    props.dispatch(addPostActionCreator());
+    props.addPost();
   };
 
   const onPostChange = () => {
     let text = newPostTextarea.current.value;
-    let action = updateNewPostTextActionCreator(text);
-    props.dispatch(action);
+    props.updateNewPostText(text);
   };
 
   return (
