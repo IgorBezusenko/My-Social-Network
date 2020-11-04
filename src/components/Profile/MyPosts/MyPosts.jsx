@@ -1,4 +1,3 @@
-import { createEvent } from "@testing-library/react";
 import React from "react";
 import {
   addPostActionCreator,
