@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import {
   sendMessageCreator,
   updateNewMessageTextCreator,
@@ -7,24 +8,22 @@ import {
 import Dialogs from "./Dialogs";
 import s from "./Dialogs.module.css";
 
-const DialogsContainer = (props) => {
-  let state = props.store.getState().dialogsPage;
-
-  let onSendMessageCklick = () => {
-    props.store.dispatch(sendMessageCreator());
+const mapStateToProps = (state) => {
+  return {
+    dialogsPage: state.dialogsPage,
   };
-
-  let onNewMessageChange = (text) => {
-    let action = updateNewMessageTextCreator(text);
-    props.store.dispatch(action);
-  };
-
-  return (
-    <Dialogs
-      sendMessage={onSendMessageCklick}
-      updateNewMessageText={onNewMessageChange}
-      state={state}
-    />
-  );
 };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    sendMessage: () => {
+      dispatch(sendMessageCreator());
+    },
+    updateNewMessageText: (text) => {
+      dispatch(updateNewMessageTextCreator(text));
+    },
+  };
+};
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+
 export default DialogsContainer;

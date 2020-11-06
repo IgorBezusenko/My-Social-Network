@@ -27,11 +27,12 @@ export const dialogsReduser = (state = initialState, action) => {
 
     case SEND_MESSAGE:
       let newText = state.newMessageText;
-      state.newMessageText = "";
+
       state.messages.push({
         id: 6,
         message: newText,
       });
+      state.newMessageText = "";
     default:
       return state;
   }
