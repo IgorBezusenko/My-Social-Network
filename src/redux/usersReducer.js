@@ -7,6 +7,8 @@ const initialState = {
     {
       id: 1,
       name: "Igor",
+      photoUrl:
+        "https://cs9.pikabu.ru/post_img/big/2017/07/10/9/1499699084140336541.png",
       followed: true,
       status: "I am a boss",
       location: { city: "Moscow", country: "Russia" },
@@ -14,6 +16,8 @@ const initialState = {
     {
       id: 2,
       name: "Julia",
+      photoUrl:
+        "https://cs9.pikabu.ru/post_img/big/2017/07/10/9/1499699084140336541.png",
       followed: true,
       status: "I am a boss too",
       location: { city: "Moscow", country: "Russia" },
@@ -21,6 +25,8 @@ const initialState = {
     {
       id: 3,
       name: "Varia",
+      photoUrl:
+        "https://cs9.pikabu.ru/post_img/big/2017/07/10/9/1499699084140336541.png",
       followed: false,
       status: "I am a buty",
       location: { city: "Kiev", country: "Ukrain" },
@@ -28,6 +34,8 @@ const initialState = {
     {
       id: 4,
       name: "Victor",
+      photoUrl:
+        "https://cs9.pikabu.ru/post_img/big/2017/07/10/9/1499699084140336541.png",
       followed: true,
       status: "I am a boss",
       location: { city: "Tiraspol", country: "Transnistria" },
@@ -54,7 +62,7 @@ export const usersReducer = (state = initialState, action) => {
         ...state,
         users: state.users.map((user) => {
           if (user.id === action.userId) {
-            return { ...user, followed: true };
+            return { ...user, followed: false };
           }
           return user;
         }),
@@ -84,7 +92,7 @@ export const unFollowAC = (userId) => {
   };
 };
 
-export const setUsers = (users) => {
+export const setUsersAC = (users) => {
   return {
     type: SET_USERS,
     users,
