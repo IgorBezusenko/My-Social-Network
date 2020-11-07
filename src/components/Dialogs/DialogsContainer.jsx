@@ -6,7 +6,6 @@ import {
 } from "../../redux/dialogsReduser";
 
 import Dialogs from "./Dialogs";
-import s from "./Dialogs.module.css";
 
 const mapStateToProps = (state) => {
   return {

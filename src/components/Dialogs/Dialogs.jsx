@@ -14,7 +14,6 @@ const Dialogs = (props) => {
   ));
 
   let newMessageText = props.dialogsPage.newMessageText;
-  console.log(newMessageText);
 
   const onSendMessageCklick = () => {
     props.sendMessage();
