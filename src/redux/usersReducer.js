@@ -1,46 +1,14 @@
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 
 const initialState = {
-  users: [
-    //   {
-    //     id: 1,
-    //     name: "Igor",
-    //     photoUrl:
-    //       "https://cs9.pikabu.ru/post_img/big/2017/07/10/9/1499699084140336541.png",
-    //     followed: true,
-    //     status: "I am a boss",
-    //     location: { city: "Moscow", country: "Russia" },
-    //   },
-    //   {
-    //     id: 2,
-    //     name: "Julia",
-    //     photoUrl:
-    //       "https://cs9.pikabu.ru/post_img/big/2017/07/10/9/1499699084140336541.png",
-    //     followed: true,
-    //     status: "I am a boss too",
-    //     location: { city: "Moscow", country: "Russia" },
-    //   },
-    //   {
-    //     id: 3,
-    //     name: "Varia",
-    //     photoUrl:
-    //       "https://cs9.pikabu.ru/post_img/big/2017/07/10/9/1499699084140336541.png",
-    //     followed: false,
-    //     status: "I am a buty",
-    //     location: { city: "Kiev", country: "Ukrain" },
-    //   },
-    //   {
-    //     id: 4,
-    //     name: "Victor",
-    //     photoUrl:
-    //       "https://cs9.pikabu.ru/post_img/big/2017/07/10/9/1499699084140336541.png",
-    //     followed: true,
-    //     status: "I am a boss",
-    //     location: { city: "Tiraspol", country: "Transnistria" },
-    //   },
-  ],
+  users: [],
+  pageSize: 7,
+  totalUsersCount: 40,
+  currentPage: 1,
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -71,7 +39,19 @@ export const usersReducer = (state = initialState, action) => {
     case SET_USERS:
       return {
         ...state,
-        users: [...state.users, ...action.users],
+        users: [...action.users],
+      };
+
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.currentPage,
+      };
+
+    case SET_TOTAL_USERS_COUNT:
+      return {
+        ...state,
+        totalUsersCount: action.totalUsersCount,
       };
 
     default:
@@ -96,5 +76,18 @@ export const setUsersAC = (users) => {
   return {
     type: SET_USERS,
     users,
+  };
+};
+
+export const setCurrentPageAC = (currentPage) => {
+  return {
+    type: SET_CURRENT_PAGE,
+    currentPage,
+  };
+};
+export const setTotalUsersCountAC = (totalUsersCount) => {
+  return {
+    type: SET_TOTAL_USERS_COUNT,
+    totalUsersCount,
   };
 };
