@@ -5,3 +5,11 @@
 .header img {
   width: 20px;
 }
+
+.login {
+  text-align: right;
+  color: white;
+}
+.login a {
+  color: white;
+}
