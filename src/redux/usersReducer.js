@@ -79,14 +79,12 @@ export const unfollow = (userId) => {
     userId,
   };
 };
-
 export const setUsers = (users) => {
   return {
     type: SET_USERS,
     users,
   };
 };
-
 export const setCurrentPage = (currentPage) => {
   return {
     type: SET_CURRENT_PAGE,
