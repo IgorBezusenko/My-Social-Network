@@ -20,7 +20,7 @@ const ProfileInfo = (props) => {
         <div>{props.profile.aboutMe}</div>
         <div>{props.profile.fullName}</div>
         <div>
-          <strong>Contacts:</strong>
+          <strong>Contacts: </strong>
           <div>{props.profile.contacts.facebook}</div>
           <div>{props.profile.contacts.github}</div>
           <div>{props.profile.contacts.instagram}</div>
