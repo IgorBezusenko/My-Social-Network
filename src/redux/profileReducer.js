@@ -48,14 +48,12 @@ export const addPostActionCreator = () => {
     type: ADD_POST,
   };
 };
-
 export const updateNewPostTextActionCreator = (text) => {
   return {
     type: UPDATE_NEW_POST_TEXT,
     newText: text,
   };
 };
-
 export const setUsersProfile = (profile) => {
   return {
     type: SET_USERS_PROFILE,
@@ -63,9 +61,9 @@ export const setUsersProfile = (profile) => {
   };
 };
 
-export const fetchUserId = (userId) => {
+export const getUserProfile= (userId) => {
   return (dispatch) => {
-    usersAPI.getUserId(userId).then((response) => {
+    usersAPI.getProfile(userId).then((response) => {
       dispatch(setUsersProfile(response.data));
     });
   };
