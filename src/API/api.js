@@ -1,6 +1,6 @@
 import * as axios from "axios";
 
-const instans = axios.create({
+const instance = axios.create({
   withCredentials: true,
   headers: {
     "API-KEY": "b8c04e43-1d5b-48ed-bbd5-829734d4889b",
@@ -10,9 +10,15 @@ const instans = axios.create({
 
 export const usersAPI = {
   getUsers(currentPage, pageSize) {
-    return instans
+    return instance
       .get(`users?page=${currentPage}&count=${pageSize}`)
       .then((response) => response.data);
   },
-};
 
+  follow(userId) {
+    return instance.post(`follow/${userId}`);
+  },
+  unfollow(userId) {
+    return instance.delete(`follow/${userId}`);
+  },
+};
