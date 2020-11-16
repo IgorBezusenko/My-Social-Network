@@ -26,6 +26,7 @@ export const setAuthUserData = (userId, email, login) => {
   return {
     type: SET_AUTH_USER_DATA,
     data: { userId, email, login },
+    isAuth: true,
   };
 };
 

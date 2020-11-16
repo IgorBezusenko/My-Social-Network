@@ -8,6 +8,7 @@ import {
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import { Spinner } from "../common/spinner/spinner";
+import { WithAuthRedirect } from "../hoc/withAuthRedirect";
 
 class UsersAPI extends React.Component {
   componentDidMount() {
@@ -55,6 +56,11 @@ const mapDispatchToProps = {
   getUsers,
 };
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPI);
+let AuthRediectComponent = WithAuthRedirect(UsersAPI);
+
+const UsersContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AuthRediectComponent);
 
 export default UsersContainer;
