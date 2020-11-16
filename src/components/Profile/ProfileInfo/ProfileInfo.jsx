@@ -2,9 +2,9 @@ import React from "react";
 
 import s from "./ProfileInfo.module.css";
 import { Spinner } from "../../common/spinner/spinner";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
-  console.log(props);
   if (!props.profile) {
     return <Spinner />;
   }
@@ -17,6 +17,9 @@ const ProfileInfo = (props) => {
         <div>
           <img src={props.profile.photos.large} alt="cover" />
         </div>
+
+        <ProfileStatus status={"You are young!"} />
+
         <div>{props.profile.aboutMe}</div>
         <div>{props.profile.fullName}</div>
         <div>
