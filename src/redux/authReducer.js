@@ -1,4 +1,4 @@
-import { authAPI, usersAPI } from "../API/api";
+import { authAPI } from "../API/api";
 
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 
@@ -26,7 +26,6 @@ export const setAuthUserData = (userId, email, login) => {
   return {
     type: SET_AUTH_USER_DATA,
     data: { userId, email, login },
-    isAuth: true,
   };
 };
 
