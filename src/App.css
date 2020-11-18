@@ -10,5 +10,5 @@
 
 .app-wrapper-content {
   grid-area: mainContent;
-  background-color: rgb(160, 160, 160);
+  background-color: lightskyblue;
 }
