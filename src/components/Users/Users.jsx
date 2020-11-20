@@ -10,23 +10,24 @@ const Users = (props) => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
-
+  console.log(props.currentPage);
   return (
     <div>
       <div>
-        {pages.map((p) => (
+        {pages.map((p, index) => (
           <span
-            onClick={() => props.onPageChange(p)}
-            className={props.currentPage === p && s.selectedPage}
+            key={index}
+            onClick={(e) => props.onPageChange(p)}
+            className={props.currentPage === p ? s.selectedPage : ""}
           >
             {p}
           </span>
         ))}
       </div>
 
-      {props.users.map((user) => {
+      {props.users.map((user, index) => {
         return (
-          <div>
+          <div key={index}>
             <div>
               <div className={s.userPhoto}>
                 <NavLink to={"/profile/" + user.id}>

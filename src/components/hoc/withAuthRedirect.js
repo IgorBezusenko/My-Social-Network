@@ -18,3 +18,12 @@ export const WithAuthRedirect = (Component) => {
   let ConnectedWithAuthRedirect = connect(mapStateToProps)(WithAuthRedirect);
   return ConnectedWithAuthRedirect;
 };
+// export const WithAuthRedirect = (Component) => {
+//   let withRedirectAuth = (props) => {
+//     if (!props.isAuth) return <Redirect to={"/login"} />;
+//     return <Component {...props} />;
+//   };
+//
+//   let ConnectedWithAuthRedirect = connect(mapStateToProps)(withRedirectAuth);
+//   return ConnectedWithAuthRedirect;
+// };
