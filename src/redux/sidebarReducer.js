@@ -6,6 +6,6 @@ const initialState = {
   ],
 };
 
-export const sidebarReduser = (state = initialState, action) => {
+export const sidebarReducer = (state = initialState, action) => {
   return state;
 };

@@ -10,7 +10,7 @@ const Users = (props) => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
-  console.log(props.currentPage);
+
   return (
     <div>
       <div>
