@@ -1,5 +1,5 @@
 .app-wrapper {
-  width: 1200px;
+  max-width: 1200px;
   height: 95vh;
   margin: 0 auto;
   display: grid;
