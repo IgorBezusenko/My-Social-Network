@@ -8,7 +8,6 @@ import {
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import { Spinner } from "../common/spinner/spinner";
-import { WithAuthRedirect } from "../hoc/withAuthRedirect";
 import { compose } from "redux";
 
 class UsersAPI extends React.Component {
@@ -58,7 +57,4 @@ const mapDispatchToProps = {
   getUsers,
 };
 
-export default compose(
-  WithAuthRedirect,
-  connect(mapStateToProps, mapDispatchToProps)
-)(UsersAPI);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(UsersAPI);
