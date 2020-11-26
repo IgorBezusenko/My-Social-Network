@@ -1,14 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  follow,
-  getUsers,
-  setCurrentPage,
-  unfollow,
-} from "../../redux/usersReducer";
+import { follow, getUsers, unfollow } from "../../redux/usersReducer";
 import Users from "./Users";
 import { Spinner } from "../common/spinner/spinner";
 import { compose } from "redux";
+import {
+  getCurrentPage,
+  getFollowingInProgress,
+  getIsFetching,
+  getPageSize,
+  getTotalUsersCount,
+  getUserSelector,
+} from "../../redux/userSelectors";
 
 class UsersAPI extends React.Component {
   componentDidMount() {
@@ -16,7 +19,6 @@ class UsersAPI extends React.Component {
   }
 
   onPageChange = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
     this.props.getUsers(pageNumber, this.props.pageSize);
   };
 
@@ -41,19 +43,18 @@ class UsersAPI extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress,
+    users: getUserSelector(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    followingInProgress: getFollowingInProgress(state),
   };
 };
 
 const mapDispatchToProps = {
   follow,
   unfollow,
-  setCurrentPage,
   getUsers,
 };
 
