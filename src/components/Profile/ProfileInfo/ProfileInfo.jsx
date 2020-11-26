@@ -3,6 +3,7 @@ import React from "react";
 import s from "./ProfileInfo.module.css";
 import { Spinner } from "../../common/spinner/spinner";
 import ProfileStatus from "./ProfileStatus";
+import ProfileStatusUseHooks from "./ProfileStatusUseHooks";
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -18,7 +19,7 @@ const ProfileInfo = (props) => {
           <img src={props.profile.photos.large} alt="cover" />
         </div>
 
-        <ProfileStatus
+        <ProfileStatusUseHooks
           status={props.status}
           updateStatus={props.updateStatus}
         />
