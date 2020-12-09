@@ -2,11 +2,10 @@ import React from "react";
 
 import s from "./ProfileInfo.module.css";
 import { Spinner } from "../../common/spinner/spinner";
-import ProfileStatus from "./ProfileStatus";
 import ProfileStatusUseHooks from "./ProfileStatusUseHooks";
 
-const ProfileInfo = (props) => {
-  if (!props.profile) {
+const ProfileInfo = ({ profile, status, updateStatus }) => {
+  if (!profile) {
     return <Spinner />;
   }
   return (
@@ -14,28 +13,25 @@ const ProfileInfo = (props) => {
       <div className={s.profileInfo}>
         <img src="https://theinpaint.com/images/example-1-2.jpg" />
       </div>
-      <div className={s.descriptionBlok}>
+      <div className={s.descriptionBlock}>
         <div>
-          <img src={props.profile.photos.large} alt="cover" />
+          <img src={profile.photos.large} alt="cover" />
         </div>
 
-        <ProfileStatusUseHooks
-          status={props.status}
-          updateStatus={props.updateStatus}
-        />
+        <ProfileStatusUseHooks status={status} updateStatus={updateStatus} />
 
-        <div>{props.profile.aboutMe}</div>
-        <div>{props.profile.fullName}</div>
+        <div>{profile.aboutMe}</div>
+        <div>{profile.fullName}</div>
         <div>
           <strong>Contacts: </strong>
-          <div>{props.profile.contacts.facebook}</div>
-          <div>{props.profile.contacts.github}</div>
-          <div>{props.profile.contacts.instagram}</div>
-          <div>{props.profile.contacts.mainLink}</div>
-          <div>{props.profile.contacts.twitter}</div>
-          <div>{props.profile.contacts.vk}</div>
-          <div>{props.profile.contacts.website}</div>
-          <div>{props.profile.contacts.youtube}</div>
+          <div>{profile.contacts.facebook}</div>
+          <div>{profile.contacts.github}</div>
+          <div>{profile.contacts.instagram}</div>
+          <div>{profile.contacts.mainLink}</div>
+          <div>{profile.contacts.twitter}</div>
+          <div>{profile.contacts.vk}</div>
+          <div>{profile.contacts.website}</div>
+          <div>{profile.contacts.youtube}</div>
         </div>
       </div>
     </div>

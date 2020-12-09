@@ -5,7 +5,7 @@ import FriendsContainer from "./Friends/FriendsContainer";
 
 import s from "./Navbar.module.css";
 
-const Navbar = (props) => {
+const Navbar = () => {
   return (
     <nav className={s.nav}>
       <div className={s.item}>

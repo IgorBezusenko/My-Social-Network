@@ -47,7 +47,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = { getUserProfile, getStatus, updateStatus };
 
 export default compose(
-  // WithAuthRedirect,
+  WithAuthRedirect,
   connect(mapStateToProps, mapDispatchToProps),
   withRouter
 )(ProfileContainer);

@@ -8,24 +8,24 @@ const mapStateToProps = (state) => {
   };
 };
 
-export const WithAuthRedirect = (Component) => {
-  class WithAuthRedirect extends React.Component {
-    render() {
-      if (!this.props.isAuth) {
-        return <Redirect to={"/login"} />;
-      }
-      return <Component {...this.props} />;
-    }
-  }
-  let ConnectedWithAuthRedirect = connect(mapStateToProps)(WithAuthRedirect);
-  return ConnectedWithAuthRedirect;
-};
 // export const WithAuthRedirect = (Component) => {
-//   let withRedirectAuth = (props) => {
-//     if (!props.isAuth) return <Redirect to={"/login"} />;
-//     return <Component {...props} />;
-//   };
-//
-//   let ConnectedWithAuthRedirect = connect(mapStateToProps)(withRedirectAuth);
+//   class WithAuthRedirect extends React.Component {
+//     render() {
+//       if (!this.props.isAuth) {
+//         return <Redirect to={"/login"} />;
+//       }
+//       return <Component {...this.props} />;
+//     }
+//   }
+//   let ConnectedWithAuthRedirect = connect(mapStateToProps)(WithAuthRedirect);
 //   return ConnectedWithAuthRedirect;
 // };
+export const WithAuthRedirect = (Component) => {
+  let withRedirectAuth = (props) => {
+    if (!props.isAuth) return <Redirect to={"/login"} />;
+    return <Component {...props} />;
+  };
+
+  let ConnectedWithAuthRedirect = connect(mapStateToProps)(withRedirectAuth);
+  return ConnectedWithAuthRedirect;
+};
