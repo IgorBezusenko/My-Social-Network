@@ -1,4 +1,4 @@
-import { profileAPI, usersAPI } from "../API/api";
+import { usersAPI } from "../API/api";
 import { updateObjectInArray } from "../components/utils/object-helpers";
 
 const FOLLOW = "FOLLOW";
@@ -26,13 +26,6 @@ export const usersReducer = (state = initialState, action) => {
         users: updateObjectInArray(state.users, action.userId, "id", {
           followed: true,
         }),
-        // users:[...state.users],
-        // users: state.users.map((user) => {
-        //   if (user.id === action.userId) {
-        //     return { ...user, followed: true };
-        //   }
-        //   return user;
-        // }),
       };
 
     case UNFOLLOW:
@@ -129,7 +122,7 @@ export const getUsers = (currentPage, pageSize) => async (dispatch) => {
   const data = await usersAPI.getUsers(currentPage, pageSize);
   dispatch(toggleIsFetching(false));
   dispatch(setUsers(data.items));
-  // dispatch(setTotalUsersCount(data.totalCount));
+  dispatch(setTotalUsersCount(data.totalCount));
 };
 
 const followUnfollowFlow = async (
