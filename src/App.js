@@ -1,5 +1,5 @@
-import React, { Suspense } from "react";
-import { BrowserRouter, Route, withRouter } from "react-router-dom";
+import React from "react";
+import { HashRouter, Route, withRouter } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import UsersContainer from "./components/Users/UsersContainer";
@@ -62,11 +62,11 @@ const AppContainer = compose(
 
 const SocialNetworkApp = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Provider store={store}>
         <AppContainer />
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
