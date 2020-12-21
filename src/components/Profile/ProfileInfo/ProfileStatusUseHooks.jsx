@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const ProfileStatusUseHooks = (props) => {
-  const [editMote, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(false);
   const [status, setStatus] = useState(props.status);
 
   useEffect(() => {
@@ -22,8 +22,10 @@ const ProfileStatusUseHooks = (props) => {
   return (
     <>
       <div>
-        {!editMote ? (
-          <span onClick={activatedEditMode}>{status}</span>
+        {!editMode ? (
+          <div>
+            <b>Status:</b> <span onClick={activatedEditMode}>{status}</span>
+          </div>
         ) : (
           <input
             type="text"

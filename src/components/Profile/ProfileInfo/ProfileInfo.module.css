@@ -15,3 +15,7 @@
 .profilePhoto img {
   width: 100%;
 }
+
+.profileContacts {
+  margin-left: 10px;
+}

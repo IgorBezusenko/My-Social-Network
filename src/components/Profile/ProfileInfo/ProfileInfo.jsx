@@ -1,11 +1,22 @@
-import React from "react";
-
-import styles from "./ProfileInfo.module.css";
+import React, { useState } from "react";
 import { Spinner } from "../../common/spinner/spinner";
 import ProfileStatusUseHooks from "./ProfileStatusUseHooks";
 import userIcon from "../../../assets/image/user.png";
+import { ProfileData } from "./ProfileData/ProfileData";
+import { ProfileDataReduxFrom } from "./ProfileData/ProfileDataFrom";
 
-const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
+import styles from "./ProfileInfo.module.css";
+
+const ProfileInfo = ({
+  profile,
+  status,
+  updateStatus,
+  isOwner,
+  savePhoto,
+  saveProfile,
+}) => {
+  const [editMode, setEditMode] = useState(false);
+
   if (!profile) {
     return <Spinner />;
   }
@@ -14,6 +25,12 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
     if (e.target.files.length) {
       savePhoto(e.target.files[0]);
     }
+  };
+
+  const onSubmit = (formData) => {
+    saveProfile(formData).then(() => {
+      setEditMode(false);
+    });
   };
   return (
     <div>
@@ -26,23 +43,26 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
           {isOwner && <input onChange={onPhotosChange} type={"file"} />}
         </div>
 
-        <ProfileStatusUseHooks status={status} updateStatus={updateStatus} />
-
-        <div>{profile.aboutMe}</div>
-        <div>{profile.fullName}</div>
         <div>
-          <strong>Contacts: </strong>
-          <div>{profile.contacts.facebook}</div>
-          <div>{profile.contacts.github}</div>
-          <div>{profile.contacts.instagram}</div>
-          <div>{profile.contacts.mainLink}</div>
-          <div>{profile.contacts.twitter}</div>
-          <div>{profile.contacts.vk}</div>
-          <div>{profile.contacts.website}</div>
-          <div>{profile.contacts.youtube}</div>
+          {editMode ? (
+            <ProfileDataReduxFrom
+              initialValues={profile}
+              profile={profile}
+              onSubmit={onSubmit}
+            />
+          ) : (
+            <ProfileData
+              profile={profile}
+              isOwner={isOwner}
+              goToEditMode={() => setEditMode(true)}
+            />
+          )}
         </div>
+
+        <ProfileStatusUseHooks status={status} updateStatus={updateStatus} />
       </div>
     </div>
   );
 };
+
 export default ProfileInfo;
