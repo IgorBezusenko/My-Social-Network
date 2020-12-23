@@ -1,12 +1,12 @@
 import React from "react";
-
 import { reduxForm } from "redux-form";
 import { createField, Input } from "../common/FormControls/FormControls";
 import { minLength, required } from "../utils/validators/validators";
 import styles from "../common/FormControls/FormControls.module.css";
+
 const minLength4 = minLength(4);
 
-const LoginForm = ({ handleSubmit, error }) => {
+const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
   return (
     <form onSubmit={handleSubmit}>
       {error && <div className={styles.formSomeError}>{error}</div>}
@@ -24,6 +24,10 @@ const LoginForm = ({ handleSubmit, error }) => {
         { type: "checkbox" },
         "rememberMe"
       )}
+
+      {captchaUrl && <img src={captchaUrl} alt="cover" />}
+      {captchaUrl &&
+        createField(Input, [required], "captcha", "Captcha...", {})}
 
       <div>
         <button>Log in</button>
