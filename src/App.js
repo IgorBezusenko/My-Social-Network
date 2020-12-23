@@ -1,5 +1,11 @@
 import React from "react";
-import { HashRouter, Route, withRouter } from "react-router-dom";
+import {
+  BrowserRouter,
+  Redirect,
+  Route,
+  Switch,
+  withRouter,
+} from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import UsersContainer from "./components/Users/UsersContainer";
@@ -10,11 +16,6 @@ import { initializedApp } from "./redux/appReducer";
 import { Spinner } from "./components/common/spinner/spinner";
 import { store } from "./redux/reduxStore";
 import { withSuspense } from "./components/hoc/withSuspense";
-
-// import ProfileContainer from "./components/Profile/ProfileContainer";
-// import DialogsContainer from "./components/Dialogs/DialogsContainer";
-// import Login from "./components/Login/login";
-
 const ProfileContainer = React.lazy(() =>
   import("./components/Profile/ProfileContainer")
 );
@@ -36,13 +37,21 @@ class App extends React.Component {
         <HeaderContainer />
         <Navbar />
         <div className="app-wrapper-content">
-          <Route
-            path={"/profile/:userId?"}
-            render={withSuspense(ProfileContainer)}
-          />
-          <Route path={"/dialog"} render={withSuspense(DialogsContainer)} />
-          <Route path={"/users"} render={() => <UsersContainer />} />
-          <Route path={"/login"} render={withSuspense(Login)} />
+          <Switch>
+            <Route
+              exact
+              path={"/"}
+              render={() => <Redirect to={"/profile"} />}
+            />
+            <Route
+              path={"/profile/:userId?"}
+              render={withSuspense(ProfileContainer)}
+            />
+            <Route path={"/dialog"} render={withSuspense(DialogsContainer)} />
+            <Route path={"/users"} render={() => <UsersContainer />} />
+            <Route path={"/login"} render={withSuspense(Login)} />
+            <Route path={"/*"} render={() => <div>404 NOT FOUND</div>} />
+          </Switch>
         </div>
       </div>
     );
@@ -62,11 +71,11 @@ const AppContainer = compose(
 
 const SocialNetworkApp = () => {
   return (
-    <HashRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Provider store={store}>
         <AppContainer />
       </Provider>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
