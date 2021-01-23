@@ -43,6 +43,8 @@ const ProfileInfo = ({
           {isOwner && <input onChange={onPhotosChange} type={"file"} />}
         </div>
 
+        <ProfileStatusUseHooks status={status} updateStatus={updateStatus} />
+
         <div>
           {editMode ? (
             <ProfileDataReduxFrom
@@ -58,8 +60,6 @@ const ProfileInfo = ({
             />
           )}
         </div>
-
-        <ProfileStatusUseHooks status={status} updateStatus={updateStatus} />
       </div>
     </div>
   );
