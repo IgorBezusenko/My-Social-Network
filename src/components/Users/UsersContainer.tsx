@@ -1,6 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { follow, getUsers, unfollow } from "../../redux/usersReducer";
+import {
+  follow,
+  getUsers,
+  unfollow,
+  UsersType,
+} from "../../redux/usersReducer";
 import Users from "./Users";
 import { Spinner } from "../common/spinner/spinner";
 import { compose } from "redux";
@@ -12,13 +17,35 @@ import {
   getTotalUsersCount,
   getUserSelector,
 } from "../../redux/userSelectors";
+import { AppStateType } from "../../redux/reduxStore";
 
-class UsersAPI extends React.Component {
+type MapStatePropsType = {
+  currentPage: number;
+  pageSize: number;
+  isFetching: boolean;
+  totalUsersCount: number;
+  users: Array<UsersType>;
+  followingInProgress: Array<number>;
+};
+
+type MapDispatchPropsType = {
+  follow: (userId: number) => void;
+  unfollow: (userId: number) => void;
+  getUsers: (currentPage: number, pageSize: number) => void;
+};
+
+type OwnPropsType = {
+  pageTitle: string;
+};
+
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType;
+
+class UsersAPI extends React.Component<PropsType> {
   componentDidMount() {
     this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
 
-  onPageChange = (pageNumber) => {
+  onPageChange = (pageNumber: number) => {
     this.props.getUsers(pageNumber, this.props.pageSize);
   };
 
@@ -26,6 +53,7 @@ class UsersAPI extends React.Component {
     return (
       <>
         {this.props.isFetching ? <Spinner /> : null}
+        <h2>{this.props.pageTitle}</h2>
         <Users
           totalUsersCount={this.props.totalUsersCount}
           pageSize={this.props.pageSize}
@@ -41,7 +69,7 @@ class UsersAPI extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType) => {
   return {
     users: getUserSelector(state),
     pageSize: getPageSize(state),
@@ -52,10 +80,19 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = {
-  follow,
-  unfollow,
-  getUsers,
-};
+// const mapDispatchToProps = {
+//   follow,
+//   unfollow,
+//   getUsers,
+// };
 
-export default compose(connect(mapStateToProps, mapDispatchToProps))(UsersAPI);
+export default compose(
+  connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(
+    mapStateToProps,
+    {
+      follow,
+      unfollow,
+      getUsers,
+    }
+  )
+)(UsersAPI);

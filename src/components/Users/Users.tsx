@@ -2,8 +2,20 @@ import React from "react";
 import s from "./Users.module.css";
 import Paginator from "../common/Paginator/Paginator";
 import User from "./User/User";
+import { UsersType } from "../../redux/usersReducer";
 
-const Users = ({
+type PropsType = {
+  totalUsersCount: number;
+  pageSize: number;
+  onPageChange: (packageNumber: number) => void;
+  currentPage: number;
+  users: Array<UsersType>;
+  followingInProgress: Array<number>;
+  follow: (userId: number) => void;
+  unfollow: (userId: number) => void;
+};
+
+const Users: React.FC<PropsType> = ({
   totalUsersCount,
   pageSize,
   currentPage,
