@@ -1,6 +1,6 @@
 import { usersAPI } from "../API/api";
 import { updateObjectInArray } from "../components/utils/object-helpers";
-import { PhotosType } from "../types/types";
+import {PhotosType, ResultCodesEnum} from "../types/types";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -176,7 +176,7 @@ const followUnfollowFlow = async (
 ) => {
   dispatch(toggleFollowingProgress(true, userId));
   const response = await apiMethod(userId);
-  if (response.data.resultCode === 0) {
+  if (response.data.resultCode === ResultCodesEnum.Success) {
     dispatch(actionCreator(userId));
   }
   dispatch(toggleFollowingProgress(false, userId));
