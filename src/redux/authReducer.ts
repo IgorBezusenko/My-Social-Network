@@ -1,7 +1,7 @@
-import {authAPI,  securityAPI} from "../API/api";
-
 import {stopSubmit} from "redux-form";
-import {ResultCodesEnum, ResultCodesForCaptcha} from "../types/types";
+import {authAPI} from "../API/auth-api";
+import {securityAPI} from "../API/security-api";
+import {ResultCodesEnum, ResultCodesForCaptcha} from "../API/api";
 
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 const GET_CAPTCHA_URL_SUCCESS = "GET_CAPTCHA_URL_SUCCESS";

@@ -1,7 +1,8 @@
-import {usersAPI} from "../API/api";
 import {updateObjectInArray} from "../components/utils/object-helpers";
-import {PhotosType, ResultCodesEnum} from "../types/types";
+import {PhotosType} from "../types/types";
 import {InferActionsTypes} from "./reduxStore";
+import {usersAPI} from "../API/users-apiI";
+import {ResultCodesEnum} from "../API/api";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
