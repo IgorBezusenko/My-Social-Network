@@ -22,8 +22,6 @@ export type LoginFormValuesType = {
   rememberMe: boolean,
   captcha: string
 }
-
-
 export type LoginFormValuesTypeKeys = Extract<keyof LoginFormValuesType, string>
 
 

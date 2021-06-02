@@ -50,7 +50,7 @@ export const dialogsReducer = (
 
 
 export const dialogActions = {
-  sendMessageCreator: (newMessageText: string) => ({type: SEND_MESSAGE, newMessageText,} as const)
+  sendMessage: (newMessageText: string) => ({type: SEND_MESSAGE, newMessageText,} as const)
 }
 
 export type InitialSateType = typeof initialState;
