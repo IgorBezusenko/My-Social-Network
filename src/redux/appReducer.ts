@@ -7,9 +7,7 @@ const initialState = {
   initialized: false,
 };
 
-export type InitialStateType = typeof initialState
 
-type ActionsType = InferActionsTypes<typeof actions>
 
 export const appReducer = (
     state = initialState,
@@ -36,3 +34,6 @@ export const initializedApp = () => (dispatch: any) => {
     dispatch(actions.initializedSuccess());
   });
 };
+
+export type InitialStateType = typeof initialState
+type ActionsType = InferActionsTypes<typeof actions>
