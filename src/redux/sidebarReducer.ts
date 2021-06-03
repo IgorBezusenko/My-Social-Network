@@ -1,4 +1,4 @@
-type FriendsType = { id: number; name: string };
+export type FriendsType = { id: number; name: string };
 
 const initialState = {
   friends: [

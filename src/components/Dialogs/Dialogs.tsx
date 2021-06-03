@@ -20,7 +20,7 @@ const Dialogs: React.FC<OwnPropsType> = (props) => {
     ));
 
     let messagesElement = props.dialogsPage.messages.map((message) => (
-        <Message key={message.id} message={message.message} id={message.id}/>
+        <Message key={message.id} message={message.message} />
     ));
 
     const addNewMessage = (value: NewMessageFormValueType) => {
