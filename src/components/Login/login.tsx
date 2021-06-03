@@ -4,25 +4,7 @@ import {connect} from "react-redux";
 import {login} from "../../redux/authReducer";
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../../redux/reduxStore";
-
-type MapStatePropsType = {
-  captchaUrl: string | null,
-  isAuth: boolean
-}
-type MapDispatchPropsType = {
-  login: (email: string,
-          password: string,
-          rememberMe: boolean,
-          captcha: string) => void
-}
-
-export type LoginFormValuesType = {
-  email: string,
-  password: string,
-  rememberMe: boolean,
-  captcha: string
-}
-export type LoginFormValuesTypeKeys = Extract<keyof LoginFormValuesType, string>
+import {GetStringKeys} from "../common/FormControls/FormControls";
 
 
 const Login: React.FC<MapStatePropsType & MapDispatchPropsType> = (props) => {
@@ -55,3 +37,22 @@ const mapStateToProps = (state:AppStateType): MapStatePropsType => {
 };
 
 export default connect(mapStateToProps, { login })(Login);
+
+type MapStatePropsType = {
+  captchaUrl: string | null,
+  isAuth: boolean
+}
+type MapDispatchPropsType = {
+  login: (email: string,
+          password: string,
+          rememberMe: boolean,
+          captcha: string) => void
+}
+
+export type LoginFormValuesType = {
+  email: string,
+  password: string,
+  rememberMe: boolean,
+  captcha: string
+}
+export type LoginFormValuesTypeKeys = GetStringKeys<LoginFormValuesType>
