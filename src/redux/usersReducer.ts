@@ -2,7 +2,7 @@ import {updateObjectInArray} from "../components/utils/object-helpers";
 import {PhotosType} from "../types/types";
 import {BaseThunkType, InferActionsTypes} from "./reduxStore";
 import {usersAPI} from "../API/users-apiI";
-import {ResultCodesEnum} from "../API/api";
+import {ApiResponseType, ResultCodesEnum} from "../API/api";
 import {Dispatch} from "redux";
 
 const FOLLOW = "USERS/FOLLOW";
@@ -104,10 +104,10 @@ export const getUsers = (currentPage: number, pageSize: number): ThunkType => as
   dispatch(actions.setTotalUsersCount(data.totalCount));
 };
 
-const _followUnfollowFlow = async (dispatch: DispatchType, userId: number, apiMethod: any, actionCreator: any) => {
+const _followUnfollowFlow = async (dispatch: DispatchType, userId: number, apiMethod: (userId: number) => Promise<ApiResponseType>, actionCreator: any) => {
   dispatch(actions.toggleFollowingProgress(true, userId));
   const response = await apiMethod(userId);
-  if (response.data.resultCode === ResultCodesEnum.Success) {
+  if (response.resultCode === ResultCodesEnum.Success) {
     dispatch(actionCreator(userId));
   }
   dispatch(actions.toggleFollowingProgress(false, userId));
@@ -115,12 +115,12 @@ const _followUnfollowFlow = async (dispatch: DispatchType, userId: number, apiMe
 
 export const follow = (userId: number): ThunkType => async (dispatch) => {
   let apiMethod = usersAPI.follow.bind(usersAPI);
-  _followUnfollowFlow(dispatch, userId, apiMethod, actions.followSuccess);
+  await _followUnfollowFlow(dispatch, userId, apiMethod, actions.followSuccess);
 };
 
 export const unfollow = (userId: number): ThunkType => async (dispatch) => {
   let apiMethod = usersAPI.unfollow.bind(usersAPI);
-  _followUnfollowFlow(dispatch, userId, apiMethod, actions.unfollowSuccess);
+  await _followUnfollowFlow(dispatch, userId, apiMethod, actions.unfollowSuccess);
 };
 
 export type UsersType = {
@@ -130,7 +130,7 @@ export type UsersType = {
   photos: PhotosType;
   followed: boolean;
 };
-type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 type ActionsTypes = InferActionsTypes<typeof actions>
 type DispatchType = Dispatch<ActionsTypes>
 type ThunkType = BaseThunkType<ActionsTypes>

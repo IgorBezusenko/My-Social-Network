@@ -7,12 +7,10 @@ type PropsType = {
 }
 
 const Friends: React.FC<PropsType> = (props) => {
-  debugger
   const friendItem = props.friends.map((friend:FriendsType) => (
 
       <Friend key={friend.id} name={friend.name}/>
   ));
-  debugger
   return friendItem;
 };
 
