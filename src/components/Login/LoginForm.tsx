@@ -3,7 +3,7 @@ import {InjectedFormProps, reduxForm} from "redux-form";
 import {createField, Input} from "../common/FormControls/FormControls";
 import {minLength, required} from "../utils/validators/validators";
 import styles from "../common/FormControls/FormControls.module.css";
-import {LoginFormValuesType, LoginFormValuesTypeKeys} from "./login";
+import {LoginFormValuesType, LoginFormValuesTypeKeys} from "./loginPage";
 
 const minLength4 = minLength(4);
 
