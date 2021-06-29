@@ -30,7 +30,6 @@ export const UsersSearchForm: React.FC<PropsType> = React.memo(
             }
             setSubmitting(false);
             props.onFilterChanged(filter)
-            debugger
         }
         return (
             <>

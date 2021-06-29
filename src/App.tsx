@@ -2,7 +2,7 @@ import React from "react";
 import {BrowserRouter, Redirect, Route, Switch, withRouter,} from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
-import UsersContainer from "./components/Users/UsersContainer";
+import  {UsersPage} from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
@@ -54,7 +54,7 @@ class App extends React.Component<MapStatePropsType & MapDispatchPropsType> {
               <Route path={"/dialog"} render={() => <SuspenseDialog/>}/>
               <Route
                   path={"/users"}
-                  render={() => <UsersContainer pageTitle={"Samurai"}/>}
+                  render={() => <UsersPage pageTitle={"Samurai"}/>}
               />
               <Route path={"/login"} render={() => withSuspense(Login)}/>
               <Route path={"/*"} render={() => <div>404 NOT FOUND</div>}/>
