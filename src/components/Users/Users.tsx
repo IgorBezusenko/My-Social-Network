@@ -1,13 +1,14 @@
 import React from "react";
-import s from "./Users.module.css";
 import Paginator from "../common/Paginator/Paginator";
 import User from "./User/User";
-import { UsersType } from "../../redux/usersReducer";
+import {FilterType, UsersType} from "../../redux/usersReducer";
+import {UsersSearchForm} from "./UsersSearchForm";
 
 type PropsType = {
   totalUsersCount: number;
   pageSize: number;
   onPageChange: (packageNumber: number) => void;
+  onFilterChanged: (filter:FilterType) => void;
   currentPage: number;
   users: Array<UsersType>;
   followingInProgress: Array<number>;
@@ -25,11 +26,12 @@ const Users: React.FC<PropsType> = ({
 }) => {
   return (
     <div>
+      <UsersSearchForm onFilterChanged={props.onFilterChanged}/>
       <Paginator
-        currentPage={currentPage}
-        onPageChange={onPageChange}
-        totalUsersCount={totalUsersCount}
-        pageSize={pageSize}
+          currentPage={currentPage}
+          onPageChange={onPageChange}
+          totalUsersCount={totalUsersCount}
+          pageSize={pageSize}
       />
 
       {users.map((user) => {
@@ -46,4 +48,5 @@ const Users: React.FC<PropsType> = ({
     </div>
   );
 };
+
 export default Users;

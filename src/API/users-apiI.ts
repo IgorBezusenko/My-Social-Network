@@ -1,9 +1,11 @@
-import {GetItemsType, instance, ApiResponseType} from "./api";
+import {ApiResponseType, GetItemsType, instance} from "./api";
 
 export const usersAPI = {
-    getUsers(currentPage: number, pageSize: number) {
+    getUsers(currentPage = 1, pageSize = 10, term = "", friend: null | boolean = null) {
         return instance
-            .get<GetItemsType>(`users?page=${currentPage}&count=${pageSize}`)
+            .get<GetItemsType>(
+                `users?page=${currentPage}&count=${pageSize}&term=${term}`
+                + (friend === null ? '' : `&friend=${friend}`))
             .then((res) => res.data);
     },
     follow(userId: number) {
