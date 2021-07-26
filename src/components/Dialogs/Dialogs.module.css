@@ -1,18 +1,19 @@
 .dialogs {
   display: grid;
   grid-template-columns: 2fr 10fr;
-  color: white;
+  color: dimgrey;
 }
 .dialogsItems {
   padding: 10px;
 }
 .dialog a {
-  color: white;
+  color: dimgrey;
   text-decoration: none;
 }
 
 .dialog a.active {
-  color: gold;
+  color: crimson;
+
 }
 .dialog img {
   width: 50px;

@@ -14,6 +14,7 @@
     "@types/react-dom": "^17.0.0",
     "@types/react-redux": "^7.1.16",
     "@types/redux-form": "^8.3.1",
+    "antd": "^4.16.8",
     "axios": "^0.21.0",
     "formik": "^2.2.9",
     "prettier": "^2.1.2",
